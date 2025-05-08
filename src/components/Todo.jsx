@@ -18,26 +18,26 @@ export default function Todo({
     }
   }, [editId]);
 
-  const sortedTodos = [...todos].sort((a, b) => a.isCompleted - b.isCompleted);
+  
 
   return (
     <div className="todo-list">
-      {sortedTodos.map((item) => (
+      {todos.map((item) => (
         <div key={item.id} className="todo-item">
           <input
             type="checkbox"
-            checked={item.isCompleted}
+            checked={item.isCompleted || false}
             onChange={() => handleComplete(item.id)}
           />
           <input
             ref={editId === item.id ? inputRef : null}
-            value={item.todo}
+            value={item.todo || ""}
             readOnly={editId !== item.id}
             type="text"
             onChange={(e) => {
               handleChange(item.id, e.target.value);
             }}
-            class={`${editId === item.id ? "edit" : "read"} ${item.isCompleted ? 'isCompleted' : ''}`}
+            className={`${editId === item.id ? "edit" : "read"} ${item.isCompleted ? 'isCompleted' : ''}`}
           />
           <div className="btns">
             {editId === item.id ? (

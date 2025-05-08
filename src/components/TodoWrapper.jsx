@@ -17,7 +17,7 @@ export default function TodoWrapper() {
   }
 
   const addTodo=(todo)=>{
-    setTodos([...todos, {todo,id:Math.random()}])
+    setTodos([ {todo,id:Math.random(),isCompleted:false},...todos])
   }
 
   const handleEdit=(id)=>{
@@ -40,8 +40,10 @@ export default function TodoWrapper() {
         return({...item,isCompleted:!item.isCompleted})
       }
       return item
-    })
+    }).sort((a, b) => a.isCompleted - b.isCompleted)
     setTodos(newTodos)
+    
+    
   }
 
 
